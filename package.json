@@ -1,0 +1,22 @@
+{
+  "name": "programa-quimica",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DianaElisa23/Programa-Quimica.git"
+  },
+  "author": "Diana Elisa",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^28.2.1"
+  },
+  "bugs": {
+    "url": "https://github.com/DianaElisa23/Programa-Quimica/issues"
+  },
+  "homepage": "https://github.com/DianaElisa23/Programa-Quimica#readme",
+  "description": ""
+}
