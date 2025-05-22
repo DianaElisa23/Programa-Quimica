@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Masa Molecular</title>
+  <link rel="stylesheet" href="estiloTabla.css" />
+</head>
+<body>
+
+  <h1>Calculadora Masa Molecular</h1>
+
+  <div class="pantalla-principal" id="pantallaPrincipal"></div>
+  <div class="pantalla-secundaria" id="pantallaSecundaria">Fórmula vacía</div>
+  <div class="pantalla-info" id="info-elemento">
+    <p>Pasa el cursor sobre un elemento</p>
+  </div>
+
+  <div class="tabla">
+
+    <!-- Período 1 -->
+    <button class="elemento no_metal" data-simbolo="H" data-nombre="Hidrógeno">H</button>
+    <button class="elemento gas_noble" data-simbolo="He" data-nombre="Helio">He</button>
+
+    <!-- Período 2 -->
+    <button class="elemento alcalino" data-simbolo="Li" data-nombre="Litio">Li</button>
+    <button class="elemento alcalinoterreo" data-simbolo="Be" data-nombre="Berilio">Be</button>
+    <button class="elemento metaloide" data-simbolo="B" data-nombre="Boro">B</button>
+    <button class="elemento no_metal" data-simbolo="C" data-nombre="Carbono">C</button>
+    <button class="elemento no_metal" data-simbolo="N" data-nombre="Nitrógeno">N</button>
+    <button class="elemento no_metal" data-simbolo="O" data-nombre="Oxígeno">O</button>
+    <button class="elemento halogeno" data-simbolo="F" data-nombre="Flúor">F</button>
+    <button class="elemento gas_noble" data-simbolo="Ne" data-nombre="Neón">Ne</button>
+
+    <!-- Período 3 -->
+    <button class="elemento alcalino" data-simbolo="Na" data-nombre="Sodio">Na</button>
+    <button class="elemento alcalinoterreo" data-simbolo="Mg" data-nombre="Magnesio">Mg</button>
+    <button class="elemento metal_p" data-simbolo="Al" data-nombre="Aluminio">Al</button>
+    <button class="elemento metaloide" data-simbolo="Si" data-nombre="Silicio">Si</button>
+    <button class="elemento no_metal" data-simbolo="P" data-nombre="Fósforo">P</button>
+    <button class="elemento no_metal" data-simbolo="S" data-nombre="Azufre">S</button>
+    <button class="elemento halogeno" data-simbolo="Cl" data-nombre="Cloro">Cl</button>
+    <button class="elemento gas_noble" data-simbolo="Ar" data-nombre="Argón">Ar</button>
+
+    <!-- Período 4 -->
+    <button class="elemento alcalino" data-simbolo="K" data-nombre="Potasio">K</button>
+    <button class="elemento alcalinoterreo" data-simbolo="Ca" data-nombre="Calcio">Ca</button>
+    <button class="elemento transicion" data-simbolo="Sc" data-nombre="Escandio">Sc</button>
+    <button class="elemento transicion" data-simbolo="Ti" data-nombre="Titanio">Ti</button>
+    <button class="elemento transicion" data-simbolo="V" data-nombre="Vanadio">V</button>
+    <button class="elemento transicion" data-simbolo="Cr" data-nombre="Cromo">Cr</button>
+    <button class="elemento transicion" data-simbolo="Mn" data-nombre="Manganeso">Mn</button>
+    <button class="elemento transicion" data-simbolo="Fe" data-nombre="Hierro">Fe</button>
+    <button class="elemento transicion" data-simbolo="Co" data-nombre="Cobalto">Co</button>
+    <button class="elemento transicion" data-simbolo="Ni" data-nombre="Níquel">Ni</button>
+    <button class="elemento transicion" data-simbolo="Cu" data-nombre="Cobre">Cu</button>
+    <button class="elemento transicion" data-simbolo="Zn" data-nombre="Cinc">Zn</button>
+    <button class="elemento metal_p" data-simbolo="Ga" data-nombre="Galio">Ga</button>
+    <button class="elemento metaloide" data-simbolo="Ge" data-nombre="Germanio">Ge</button>
+    <button class="elemento metaloide" data-simbolo="As" data-nombre="Arsénico">As</button>
+    <button class="elemento no_metal" data-simbolo="Se" data-nombre="Selenio">Se</button>
+    <button class="elemento halogeno" data-simbolo="Br" data-nombre="Bromo">Br</button>
+    <button class="elemento gas_noble" data-simbolo="Kr" data-nombre="Kriptón">Kr</button>
+
+    <!-- Período 5 -->
+    <button class="elemento alcalino" data-simbolo="Rb" data-nombre="Rubidio">Rb</button>
+    <button class="elemento alcalinoterreo" data-simbolo="Sr" data-nombre="Estroncio">Sr</button>
+    <button class="elemento transicion" data-simbolo="Y" data-nombre="Itrio">Y</button>
+    <button class="elemento transicion" data-simbolo="Zr" data-nombre="Circonio">Zr</button>
+    <button class="elemento transicion" data-simbolo="Nb" data-nombre="Niobio">Nb</button>
+    <button class="elemento transicion" data-simbolo="Mo" data-nombre="Molibdeno">Mo</button>
+    <button class="elemento transicion" data-simbolo="Tc" data-nombre="Tecnecio">Tc</button>
+    <button class="elemento transicion" data-simbolo="Ru" data-nombre="Rutenio">Ru</button>
+    <button class="elemento transicion" data-simbolo="Rh" data-nombre="Rodio">Rh</button>
+    <button class="elemento transicion" data-simbolo="Pd" data-nombre="Paladio">Pd</button>
+    <button class="elemento transicion" data-simbolo="Ag" data-nombre="Plata">Ag</button>
+    <button class="elemento transicion" data-simbolo="Cd" data-nombre="Cadmio">Cd</button>
+    <button class="elemento metal_p" data-simbolo="In" data-nombre="Indio">In</button>
+    <button class="elemento metal_p" data-simbolo="Sn" data-nombre="Estaño">Sn</button>
+    <button class="elemento metaloide" data-simbolo="Sb" data-nombre="Antimonio">Sb</button>
+    <button class="elemento metaloide" data-simbolo="Te" data-nombre="Telurio">Te</button>
+    <button class="elemento halogeno" data-simbolo="I" data-nombre="Yodo">I</button>
+    <button class="elemento gas_noble" data-simbolo="Xe" data-nombre="Xenón">Xe</button>
+
+    <!-- Período 6 -->
+    <button class="elemento alcalino" data-simbolo="Cs" data-nombre="Cesio">Cs</button>
+    <button class="elemento alcalinoterreo" data-simbolo="Ba" data-nombre="Bario">Ba</button>
+    <button class="elemento lantanido" data-simbolo="La" data-nombre="Lantano">La</button>
+    <button class="elemento transicion" data-simbolo="Hf" data-nombre="Hafnio">Hf</button>
+    <button class="elemento transicion" data-simbolo="Ta" data-nombre="Tantalio">Ta</button>
+    <button class="elemento transicion" data-simbolo="W" data-nombre="Wolframio">W</button>
+    <button class="elemento transicion" data-simbolo="Re" data-nombre="Renio">Re</button>
+    <button class="elemento transicion" data-simbolo="Os" data-nombre="Osmio">Os</button>
+    <button class="elemento transicion" data-simbolo="Ir" data-nombre="Iridio">Ir</button>
+    <button class="elemento transicion" data-simbolo="Pt" data-nombre="Platino">Pt</button>
+    <button class="elemento transicion" data-simbolo="Au" data-nombre="Oro">Au</button>
+    <button class="elemento transicion" data-simbolo="Hg" data-nombre="Mercurio">Hg</button>
+    <button class="elemento metal_p" data-simbolo="Tl" data-nombre="Talio">Tl</button>
+    <button class="elemento metal_p" data-simbolo="Pb" data-nombre="Plomo">Pb</button>
+    <button class="elemento metal_p" data-simbolo="Bi" data-nombre="Bismuto">Bi</button>
+    <button class="elemento metal_p" data-simbolo="Po" data-nombre="Polonio">Po</button>
+    <button class="elemento halogeno" data-simbolo="At" data-nombre="Astato">At</button>
+    <button class="elemento gas_noble" data-simbolo="Rn" data-nombre="Radón">Rn</button>
+
+    <!-- Período 7 -->
+    <button class="elemento alcalino" data-simbolo="Fr" data-nombre="Francio">Fr</button>
+    <button class="elemento alcalinoterreo" data-simbolo="Ra" data-nombre="Radio">Ra</button>
+    <button class="elemento actinido" data-simbolo="Ac" data-nombre="Actinio">Ac</button>
+    <button class="elemento transicion" data-simbolo="Rf" data-nombre="Rutherfordio">Rf</button>
+    <button class="elemento transicion" data-simbolo="Db" data-nombre="Dubnio">Db</button>
+    <button class="elemento transicion" data-simbolo="Sg" data-nombre="Seaborgio">Sg</button>
+    <button class="elemento transicion" data-simbolo="Bh" data-nombre="Bohrio">Bh</button>
+    <button class="elemento transicion" data-simbolo="Hs" data-nombre="Hassio">Hs</button>
+    <button class="elemento transicion" data-simbolo="Mt" data-nombre="Meitnerio">Mt</button>
+    <button class="elemento transicion" data-simbolo="Ds" data-nombre="Darmstatio">Ds</button>
+    <button class="elemento transicion" data-simbolo="Rg" data-nombre="Roentgenio">Rg</button>
+    <button class="elemento transicion" data-simbolo="Cn" data-nombre="Copernicio">Cn</button>
+    <button class="elemento transicion" data-simbolo="Nh" data-nombre="Nihonio">Nh</button>
+    <button class="elemento transicion" data-simbolo="Fl" data-nombre="Flerovio">Fl</button>
+    <button class="elemento transicion" data-simbolo="Mc" data-nombre="Moscovio">Mc</button>
+    <button class="elemento transicion" data-simbolo="Lv" data-nombre="Livermorio">Lv</button>
+    <button class="elemento halogeno" data-simbolo="Ts" data-nombre="Tenesino">Ts</button>
+    <button class="elemento gas_noble" data-simbolo="Og" data-nombre="Oganesón">Og</button>
+
+    <!-- Lantánidos -->
+    <button class="elemento lantanido" data-simbolo="Ce" data-nombre="Cerio">Ce</button>
+    <button class="elemento lantanido" data-simbolo="Pr" data-nombre="Praseodimio">Pr</button>
+    <button class="elemento lantanido" data-simbolo="Nd" data-nombre="Neodimio">Nd</button>
+    <button class="elemento lantanido" data-simbolo="Pm" data-nombre="Prometio">Pm</button>
+    <button class="elemento lantanido" data-simbolo="Sm" data-nombre="Samario">Sm</button>
+    <button class="elemento lantanido" data-simbolo="Eu" data-nombre="Europio">Eu</button>
+    <button class="elemento lantanido" data-simbolo="Gd" data-nombre="Gadolinio">Gd</button>
+    <button class="elemento lantanido" data-simbolo="Tb" data-nombre="Terbio">Tb</button>
+    <button class="elemento lantanido" data-simbolo="Dy" data-nombre="Disprosio">Dy</button>
+    <button class="elemento lantanido" data-simbolo="Ho" data-nombre="Holmio">Ho</button>
+    <button class="elemento lantanido" data-simbolo="Er" data-nombre="Erbio">Er</button>
+    <button class="elemento lantanido" data-simbolo="Tm" data-nombre="Tulio">Tm</button>
+    <button class="elemento lantanido" data-simbolo="Yb" data-nombre="Iterbio">Yb</button>
+
+    <!-- Actínidos -->
+    <button class="elemento actinido" data-simbolo="Th" data-nombre="Torio">Th</button>
+    <button class="elemento actinido" data-simbolo="Pa" data-nombre="Protactinio">Pa</button>
+    <button class="elemento actinido" data-simbolo="U" data-nombre="Uranio">U</button>
+    <button class="elemento actinido" data-simbolo="Np" data-nombre="Neptunio">Np</button>
+    <button class="elemento actinido" data-simbolo="Pu" data-nombre="Plutonio">Pu</button>
+    <button class="elemento actinido" data-simbolo="Am" data-nombre="Americio">Am</button>
+    <button class="elemento actinido" data-simbolo="Cm" data-nombre="Curio">Cm</button>
+    <button class="elemento actinido" data-simbolo="Bk" data-nombre="Berkelio">Bk</button>
+    <button class="elemento actinido" data-simbolo="Cf" data-nombre="Californio">Cf</button>
+    <button class="elemento actinido" data-simbolo="Es" data-nombre="Einstenio">Es</button>
+    <button class="elemento actinido" data-simbolo="Fm" data-nombre="Fermio">Fm</button>
+    <button class="elemento actinido" data-simbolo="Md" data-nombre="Mendelevio">Md</button>
+    <button class="elemento actinido" data-simbolo="No" data-nombre="Nobelio">No</button>
+
+    <!-- Botones números -->
+    <button class="elemento numero" data-valor="1">1</button>
+    <button class="elemento numero" data-valor="2">2</button>
+    <button class="elemento numero" data-valor="3">3</button>
+    <button class="elemento numero" data-valor="4">4</button>
+    <button class="elemento numero" data-valor="5">5</button>
+    <button class="elemento numero" data-valor="6">6</button>
+    <button class="elemento numero" data-valor="7">7</button>
+    <button class="elemento numero" data-valor="8">8</button>
+    <button class="elemento numero" data-valor="9">9</button>
+
+    <!-- Paréntesis -->
+    <button class="elemento" data-valor="(">(</button>
+    <button class="elemento" data-valor=")">)</button>
+
+    <!-- Botones limpiar y borrar -->
+    <button class="elemento limpiar">C</button>
+    <button class="elemento delete">DEL</button>
+  </div>
+
+  <script src="Calculadora.js" defer></script>
+</body>
+</html>
