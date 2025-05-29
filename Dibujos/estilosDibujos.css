@@ -1,0 +1,69 @@
+/* estilosDibujos.css */
+html, body {
+  margin: 0; padding: 0; height: 100%; overflow: hidden;
+  font-family: sans-'Arial Rounded MT Bold', sans-serif;
+}
+#drawing-container {
+  width: 100%;
+  height: 100%;
+}
+
+.toolbar {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 160px;
+}
+
+.toolbar button {
+  background-color: #5c85a3;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.15s ease;
+  text-align: center;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.toolbar button:hover {
+  background-color: #6d94b2;
+  transform: scale(1.03);
+}
+
+
+
+
+.flecha-retroceso {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  border-left: 5px solid #333;
+  border-bottom: 5px solid #333;
+  transform: rotate(45deg);
+  cursor: pointer;
+  z-index: 999;
+  transition: transform 0.2s ease;
+}
+
+.flecha-retroceso:hover {
+  transform: rotate(45deg) scale(1.2);
+}

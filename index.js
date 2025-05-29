@@ -9,8 +9,8 @@ function createWindow() {
     width: width,
     height: height,
     webPreferences: {
-      nodeIntegration: false,
-      contextIsolation: true,
+      nodeIntegration: true,
+      contextIsolation: false,
       preload: path.join(__dirname, 'preload.js')
     },
 
@@ -33,3 +33,7 @@ app.on('activate', function () {
     createWindow();
   }
 });
+
+  function irAtras() {
+    window.history.back();
+  }

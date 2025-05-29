@@ -240,3 +240,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+  function irAtras() {
+    window.history.back();
+  }
+  

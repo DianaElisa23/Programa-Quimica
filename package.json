@@ -12,11 +12,14 @@
   "author": "Diana Elisa",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^28.2.1"
+    "electron": "^28.3.3"
   },
   "bugs": {
     "url": "https://github.com/DianaElisa23/Programa-Quimica/issues"
   },
   "homepage": "https://github.com/DianaElisa23/Programa-Quimica#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "canvas-free-drawing": "^2.1.1"
+  }
 }

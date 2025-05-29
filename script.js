@@ -8,4 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function toggleDarkMode() {
     const isDark = document.body.classList.toggle("dark-mode");
     localStorage.setItem("dark-mode", isDark ? "enabled" : "disabled");
-  }  
+  }
+
+  function irAtras() {
+    window.history.back();
+  }
+  

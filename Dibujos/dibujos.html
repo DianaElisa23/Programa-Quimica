@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editor de Dibujos</title>
+
+  <!-- tu CSS global (dark-mode, fuentes, etc) -->
+  <link rel="stylesheet" href="estilos.css" />
+  <!-- CSS específico para el canvas y la toolbar -->
+  <link rel="stylesheet" href="estilosDibujos.css" />
+</head>
+<body>
+  <div class="flecha-retroceso" onclick="irAtras()"></div>
+  
+  <!-- Barra de herramientas -->
+  <div class="toolbar">
+    <button id="hexagonLines-btn">⌬ Hexágono</button>
+    <button id="hexagon-btn">⬡ Hexágono</button>
+    <button id="pentagon-btn">⬠ Pentagono</button>
+    <button id="free-draw-btn">📏 Línea recta</button>
+    <button id="clear-btn">🗑️ Limpiar</button>
+  </div>
+
+  <!-- Contenedor donde Fabric.js montará el canvas -->
+  <div id="drawing-container"></div>
+
+  <!-- Librería Fabric.js -->
+  <script src="https://unpkg.com/fabric@4.6.0/dist/fabric.min.js"></script>   
+  <!-- Tu lógica de dibujo -->
+  <script src="dibujos.js"></script>
+</body>
+</html>
+
