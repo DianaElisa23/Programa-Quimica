@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Proyectos Guardados</title>
+  <style>
+    .proyecto {
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      display: inline-block;
+      text-align: center;
+      background: white;
+    }
+    .proyecto img {
+      width: 150px;
+      height: auto;
+      display: block;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Proyectos Guardados</h1>
+  <div id="contenedor-proyectos"></div>
+
+  <script>
+    const contenedor = document.getElementById('contenedor-proyectos');
+    const proyectos = JSON.parse(localStorage.getItem('proyectos') || '[]');
+
+    if (proyectos.length === 0) {
+      contenedor.innerHTML = '<p>No hay proyectos guardados.</p>';
+    } else {
+      proyectos.forEach((p, index) => {
+        const div = document.createElement('div');
+        div.className = 'proyecto';
+        div.innerHTML = `
+          <img src="${p.imagen}" alt="${p.nombre}">
+          <strong>${p.nombre}</strong><br>
+          <button onclick="abrirProyecto(${index})">Abrir</button>
+          <button onclick="eliminarProyecto(${index})">Eliminar</button>
+        `;
+        contenedor.appendChild(div);
+      });
+    }
+
+    function abrirProyecto(index) {
+      localStorage.setItem('proyectoActual', index);
+      window.location.href = 'editor.html'; // redirige al editor
+    }
+
+    function eliminarProyecto(index) {
+      const proyectos = JSON.parse(localStorage.getItem('proyectos') || '[]');
+      proyectos.splice(index, 1);
+      localStorage.setItem('proyectos', JSON.stringify(proyectos));
+      location.reload();
+    }
+  </script>
+</body>
+</html>

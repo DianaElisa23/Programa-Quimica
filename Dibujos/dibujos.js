@@ -19,7 +19,13 @@ window.addEventListener('DOMContentLoaded', () => {
   let lineStart = null;
   let tempLine = null;
 
-  
+  function desactivarLineaRecta() {
+    isDrawingLine = false;
+    lineStart = null;
+    tempLine = null;
+    canvas.defaultCursor = 'default';
+  }
+
 
   // Hexágono: 6 lados
   function agregarHexagono(x, y, r = 40) {
@@ -35,7 +41,8 @@ window.addEventListener('DOMContentLoaded', () => {
       originX: 'center', originY: 'center'
     });
     canvas.add(hex);
-    autoajustarObjeto(grupo);
+    autoajustarObjeto(hex); 
+
   }
 
 function agregarHexagonoConEnlaces(x, y, r = 40) {
@@ -126,22 +133,114 @@ function agregarHexagonoConEnlaces(x, y, r = 40) {
   });
 
   canvas.add(pentagono);
+  autoajustarObjeto(pentagono);
+
+}
+
+function agregarDobleLinea(canvas, x = canvas.getWidth() / 2, y = canvas.getHeight() / 2, length = 100, separation = 8) {
+  const line1 = new fabric.Line([x - length / 2, y - separation, x + length / 2, y - separation], {
+    stroke: '#000',
+    strokeWidth: 2,
+    selectable: true,
+    evented: true
+  });
+
+  const line2 = new fabric.Line([x - length / 2, y + separation, x + length / 2, y + separation], {
+    stroke: '#000',
+    strokeWidth: 2,
+    selectable: true,
+    evented: true
+  });
+
+  const grupo = new fabric.Group([line1, line2], {
+    left: x,
+    top: y,
+    originX: 'center',
+    originY: 'center',
+    hasControls: true
+  });
+
+  canvas.add(grupo);
   autoajustarObjeto(grupo);
 }
 
+function agregarTexto(canvas, texto = ' ', x = canvas.getWidth() / 2, y = canvas.getHeight() / 2) {
+  const objetoTexto = new fabric.IText(texto, {
+    left: x,
+    top: y,
+    fill: '#000',
+    fontSize: 24,
+    fontWeight: 'bold',
+    fontFamily: 'Arial',
+    selectable: true,
+    editable: true, 
+    originX: 'center',
+    originY: 'center'
+  });
+
+  canvas.add(objetoTexto);
+  canvas.setActiveObject(objetoTexto);
+  canvas.renderAll();
+  setTimeout(() => objetoTexto.enterEditing(), 100);
+}
+
+
+
 
 function borrarSeleccion() {
-  const seleccion = canvas.getActiveObject();
-  if (!seleccion) return;
+  const activeObject = canvas.getActiveObject();
 
-  if (seleccion.type === 'activeSelection') {
-    seleccion.forEachObject(obj => canvas.remove(obj));
+  if (!activeObject) return;
+
+  if (activeObject.type === 'activeSelection') {
+    activeObject.forEachObject(obj => canvas.remove(obj));
+  } else if (activeObject.type === 'group') {
+    // Desagrupa primero y luego borra todos los objetos del grupo
+    const items = activeObject._objects;
+    canvas.remove(activeObject);
+    items.forEach(obj => canvas.remove(obj));
   } else {
-    canvas.remove(seleccion);
+    canvas.remove(activeObject);
   }
 
   canvas.discardActiveObject();
   canvas.requestRenderAll();
+}
+
+function snapToNearby(obj, threshold = 15) {
+  const objCenter = obj.getCenterPoint();
+
+  canvas.getObjects().forEach(other => {
+    if (other === obj) return;
+
+    const otherCenter = other.getCenterPoint();
+
+    let snapped = false;
+
+    if (Math.abs(objCenter.x - otherCenter.x) < threshold) {
+      obj.setPositionByOrigin(
+        new fabric.Point(otherCenter.x, objCenter.y),
+        'center',
+        'center'
+      );
+      snapped = true;
+    }
+
+    if (Math.abs(objCenter.y - otherCenter.y) < threshold) {
+      obj.setPositionByOrigin(
+        new fabric.Point(obj.getCenterPoint().x, otherCenter.y),
+        'center',
+        'center'
+      );
+      snapped = true;
+    }
+
+    if (snapped) {
+      obj.setCoords();
+    }
+  });
+
+  canvas.renderAll();
 }
 
 
@@ -181,19 +280,62 @@ canvas.on('mouse:move', function (opt) {
   canvas.renderAll();
 });
 
+canvas.on('object:moving', function (e) {
+  const obj = e.target;
+  snapToNearby(obj);
+});
 
 
 
 
   // Botones
   document.getElementById('hexagonLines-btn')
-    .addEventListener('click', () => agregarHexagonoConEnlaces(window.innerWidth/2, window.innerHeight/2));
-  document.getElementById('hexagon-btn')
-    .addEventListener('click', () => agregarHexagono(window.innerWidth/2, window.innerHeight/2));
+  .addEventListener('click', () => {
+    desactivarLineaRecta();
+    agregarHexagonoConEnlaces(window.innerWidth / 2, window.innerHeight / 2);
+  });
 
-  document.getElementById('pentagon-btn')
-    .addEventListener('click', () => agregarPentagono(window.innerWidth/2, window.innerHeight/2));
-  
+  document.getElementById('hexagon-btn')
+  .addEventListener('click', () => {
+    desactivarLineaRecta();
+    agregarHexagono(window.innerWidth / 2, window.innerHeight / 2);
+  });
+
+document.getElementById('pentagon-btn')
+  .addEventListener('click', () => {
+    desactivarLineaRecta();
+    agregarPentagono(window.innerWidth / 2, window.innerHeight / 2);
+  });
+
+document.getElementById('double-line-btn')
+  .addEventListener('click', () => {
+    desactivarLineaRecta();
+    agregarDobleLinea(canvas);
+  });
+
+document.getElementById('text-btn')
+  .addEventListener('click', () => {
+    desactivarLineaRecta();
+    agregarTexto(canvas);
+  });
+
+document.getElementById('save-btn')
+  .addEventListener('click', () => {
+    const nombre = prompt('Nombre del proyecto:');
+    if (!nombre) return;
+
+    const imagen = canvas.toDataURL({ format: 'png', multiplier: 2 });
+
+    const guardados = JSON.parse(localStorage.getItem('proyectos') || '[]');
+    guardados.push({ nombre, imagen, fecha: new Date().toISOString() });
+
+    localStorage.setItem('proyectos', JSON.stringify(guardados));
+
+    // Redirige a la pantalla de proyectos pasados
+    window.location.href = 'proyectos.html';
+  });
+
+
 // Botón para alternar modo línea
   document.getElementById('free-draw-btn')
    .addEventListener('click', () => {
@@ -210,10 +352,17 @@ canvas.on('mouse:move', function (opt) {
   
 
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Delete' || e.key === 'Backspace') {
-      borrarSeleccion();
-    }
-  });
+  const obj = canvas.getActiveObject();
+
+  // No borrar si se está editando texto
+  if (obj && obj.isEditing) return;
+
+  if (e.key === 'Delete' || e.key === 'Backspace') {
+    e.preventDefault(); // evita borrar en input accidentalmente
+    borrarSeleccion();
+  }
+});
+
 
 
   
