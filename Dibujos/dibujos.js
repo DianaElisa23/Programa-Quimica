@@ -243,6 +243,33 @@ function snapToNearby(obj, threshold = 15) {
   canvas.renderAll();
 }
 
+function guardarProyecto() {
+  const nombre = prompt("Escribe un nombre para tu proyecto:");
+  if (!nombre) return;
+
+  const json = JSON.stringify(canvas.toJSON());
+  const imagen = canvas.toDataURL({ format: 'png' });
+
+  let proyectos = JSON.parse(localStorage.getItem('proyectos') || '[]');
+
+  // Verificar si ya existe
+  const existenteIndex = proyectos.findIndex(p => p.nombre === nombre);
+
+  if (existenteIndex !== -1) {
+    const confirmar = confirm("Ya existe un proyecto con ese nombre. ¿Quieres sobrescribirlo?");
+    if (!confirmar) return;
+
+    // Sobrescribir
+    proyectos[existenteIndex] = { nombre, imagen, json };
+  } else {
+    // Agregar nuevo
+    proyectos.push({ nombre, imagen, json });
+  }
+
+  localStorage.setItem('proyectos', JSON.stringify(proyectos));
+  window.location.href = '../Proyectos/proyectos.html';
+}
+
 
 // Al hacer clic en el canvas
 canvas.on('mouse:down', function (opt) {
@@ -319,21 +346,22 @@ document.getElementById('text-btn')
     agregarTexto(canvas);
   });
 
-document.getElementById('save-btn')
-  .addEventListener('click', () => {
-    const nombre = prompt('Nombre del proyecto:');
-    if (!nombre) return;
+  document.getElementById('save-btn')
+    .addEventListener('click', () => {
+      const nombre = prompt('Nombre del proyecto:');
+      if (!nombre) return;
 
-    const imagen = canvas.toDataURL({ format: 'png', multiplier: 2 });
+      const imagen = canvas.toDataURL({ format: 'png', multiplier: 2 });
+      const json = JSON.stringify(canvas.toJSON());
 
-    const guardados = JSON.parse(localStorage.getItem('proyectos') || '[]');
-    guardados.push({ nombre, imagen, fecha: new Date().toISOString() });
+      const guardados = JSON.parse(localStorage.getItem('proyectos') || '[]');
+      guardados.push({ nombre, imagen, json, fecha: new Date().toISOString() });
 
-    localStorage.setItem('proyectos', JSON.stringify(guardados));
+      localStorage.setItem('proyectos', JSON.stringify(guardados));
 
-    // Redirige a la pantalla de proyectos pasados
-    window.location.href = 'proyectos.html';
-  });
+      // Redirigir a proyectos.html
+      window.location.href = 'proyectos.html';
+    });
 
 
 // Botón para alternar modo línea
@@ -363,9 +391,6 @@ document.getElementById('save-btn')
   }
 });
 
-
-
-  
   // Redimensionar al cambiar tamaño de ventana
   window.addEventListener('resize', () => {
     canvasEl.width = window.innerWidth;
