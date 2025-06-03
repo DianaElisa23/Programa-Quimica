@@ -6,16 +6,42 @@
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body class="pantalla-inicio">
-    <div class="modo-oscuro-toggle" onclick="toggleDarkMode()">🌙</div>
+  <div class="modo-oscuro-toggle" onclick="toggleDarkMode()">🌙</div>
+
+  <img src="https://images.icon-icons.com/609/PNG/512/molecule_icon-icons.com_56341.png" alt="Fondo átomo" class="fondo-icono">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Logo_de_la_Universidad_Veracruzana.svg/696px-Logo_de_la_Universidad_Veracruzana.svg.png?20200814030034" class="logo" alt="Logo">
   
-    <img src="https://images.icon-icons.com/609/PNG/512/molecule_icon-icons.com_56341.png" alt="Fondo átomo" class="fondo-icono">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Logo_de_la_Universidad_Veracruzana.svg/696px-Logo_de_la_Universidad_Veracruzana.svg.png?20200814030034" class="logo" alt="Logo">
-    <div class="contenido">
-      <h1>Bienvenido,<br>¿Qué deseas realizar?</h1>
-      <button onclick="window.location.href='Calculadora/Calculadora.html'">Calculadora de Peso Molecular</button>
-      <button onclick="window.location.href='proyecto.html'">Dibujar estructuras</button>
-    </div>
-  
-    <script src="script.js"></script>
-  </body>  
+  <div class="contenido">
+    <h1>Bienvenido,<br>¿Qué deseas realizar?</h1>
+    <button onclick="window.location.href='Calculadora/Calculadora.html'">Calculadora de Peso Molecular</button>
+    <button onclick="window.location.href='proyecto.html'">Dibujar estructuras</button>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    function toggleDarkMode() {
+      const body = document.body;
+      const toggle = document.querySelector('.modo-oscuro-toggle');
+      body.classList.toggle('dark-mode');
+
+      const isDark = body.classList.contains('dark-mode');
+      localStorage.setItem('modoOscuro', isDark);
+      toggle.textContent = isDark ? '☀️' : '🌙';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedMode = localStorage.getItem('modoOscuro') === 'true';
+      const body = document.body;
+      const toggle = document.querySelector('.modo-oscuro-toggle');
+
+      if (savedMode) {
+        body.classList.add('dark-mode');
+        toggle.textContent = '☀️';
+      } else {
+        toggle.textContent = '🌙';
+      }
+    });
+  </script>
+</body>
 </html>

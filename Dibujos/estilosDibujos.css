@@ -67,3 +67,80 @@ html, body {
 .flecha-retroceso:hover {
   transform: rotate(45deg) scale(1.2);
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 320px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-family: Arial, sans-serif;
+}
+
+.modal-content label {
+  font-weight: bold;
+}
+
+.modal-content input {
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+.modal-content input:focus {
+  border-color: #ffffff;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#confirmar-guardar {
+  background-color: #28a745;
+  color: white;
+}
+
+#confirmar-guardar:hover {
+  background-color: #218838;
+}
+
+#cancelar-guardar {
+  background-color: #28a745;
+  color: white;
+}
+
+#cancelar-guardar:hover {
+  background-color: #218838;
+}
+
+

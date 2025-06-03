@@ -8,13 +8,52 @@ window.addEventListener('DOMContentLoaded', () => {
   container.appendChild(canvasEl);
 
   // Inicializar Fabric.js
-  const canvas = new fabric.Canvas('canvas', {
+  window.canvas = new fabric.Canvas('canvas', {
     backgroundColor: '#f5f5f5',
     isDrawingMode: false
   });
   canvas.freeDrawingBrush.color = '#000';
   canvas.freeDrawingBrush.width = 2;
 
+  function guardarProyecto() {
+  const modal = document.getElementById("nombre-proyecto-modal");
+  const input = document.getElementById("nombre-input");
+
+  input.value = "";
+  modal.style.display = "flex";
+
+  document.getElementById("confirmar-guardar").onclick = () => {
+    const nombre = input.value.trim();
+    if (!nombre) {
+      alert("Escribe un nombre válido");
+      return;
+    }
+
+    const json = JSON.stringify(canvas.toJSON());
+    const imagen = canvas.toDataURL({ format: 'png' });
+
+    let proyectos = JSON.parse(localStorage.getItem('proyectos') || '[]');
+    const existenteIndex = proyectos.findIndex(p => p.nombre === nombre);
+
+    if (existenteIndex !== -1) {
+      const confirmar = confirm("Ya existe un proyecto con ese nombre. ¿Quieres sobrescribirlo?");
+      if (!confirmar) return;
+      proyectos[existenteIndex] = { nombre, imagen, json };
+    } else {
+      proyectos.push({ nombre, imagen, json });
+    }
+
+    localStorage.setItem('proyectos', JSON.stringify(proyectos));
+    modal.style.display = "none";
+    window.location.href = '../Proyectos/proyectos.html';
+  };
+
+  document.getElementById("cancelar-guardar").onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
+  
   // 🔁 Cargar proyecto si fue seleccionado
   const proyectosGuardados = JSON.parse(localStorage.getItem('proyectos') || '[]');
   const indexSeleccionado = localStorage.getItem('proyectoActual');
@@ -229,27 +268,7 @@ window.addEventListener('DOMContentLoaded', () => {
     canvas.renderAll();
   }
 
-  function guardarProyecto() {
-    const nombre = prompt("Escribe un nombre para tu proyecto:");
-    if (!nombre) return;
 
-    const json = JSON.stringify(canvas.toJSON());
-    const imagen = canvas.toDataURL({ format: 'png' });
-
-    let proyectos = JSON.parse(localStorage.getItem('proyectos') || '[]');
-    const existenteIndex = proyectos.findIndex(p => p.nombre === nombre);
-
-    if (existenteIndex !== -1) {
-      const confirmar = confirm("Ya existe un proyecto con ese nombre. ¿Quieres sobrescribirlo?");
-      if (!confirmar) return;
-      proyectos[existenteIndex] = { nombre, imagen, json };
-    } else {
-      proyectos.push({ nombre, imagen, json });
-    }
-
-    localStorage.setItem('proyectos', JSON.stringify(proyectos));
-    window.location.href = '../Proyectos/proyectos.html';
-  }
 
   // Eventos del canvas
   canvas.on('mouse:down', function (opt) {
@@ -357,8 +376,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     canvas.renderAll();
   }
+  window.irAtras = function () {
+  window.history.back();
+  };
 
-  function irAtras() {
-    window.history.back();
-  }
 });

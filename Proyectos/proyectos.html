@@ -12,26 +12,22 @@
       padding: 0;
     }
 
-    h1 {
-      text-align: center;
-    }
-
     #contenedor-proyectos {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 30px 20px 60px;
+      padding: 30px 20px;
     }
 
     .proyecto {
       margin: 15px;
       padding: 10px;
       border: 1px solid #ccc;
-      display: inline-block;
       text-align: center;
       background: white;
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 200px;
     }
 
     .proyecto img {
@@ -41,16 +37,30 @@
       margin: 10px auto;
     }
 
+    .botones {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
     .proyecto button {
-      margin-top: 5px;
-      padding: 5px 10px;
+      flex: 1;
+      padding: 6px;
       border: none;
-      background-color: #4CAF50;
       color: white;
       border-radius: 5px;
       cursor: pointer;
     }
-    
+
+    .abrir {
+      background-color: #4CAF50;
+    }
+
+    .eliminar {
+      background-color: #d9534f;
+    }
+
     .flecha-retroceso {
       position: absolute;
       top: 20px;
@@ -73,17 +83,20 @@
 <body>
   <div class="flecha-retroceso" onclick="window.location.href='../proyecto.html'"></div>
 
-  <h1>Proyectos Guardados</h1>
-
   <div id="contenedor-proyectos"></div>
 
   <script>
     const contenedor = document.getElementById('contenedor-proyectos');
-    const proyectos = JSON.parse(localStorage.getItem('proyectos') || '[]');
+    let proyectos = JSON.parse(localStorage.getItem('proyectos') || '[]');
 
-    if (proyectos.length === 0) {
-      contenedor.innerHTML = '<p>No hay proyectos guardados.</p>';
-    } else {
+    function actualizarVista() {
+      contenedor.innerHTML = '';
+
+      if (proyectos.length === 0) {
+        contenedor.innerHTML = '<p>No hay proyectos guardados.</p>';
+        return;
+      }
+
       proyectos.forEach((p, index) => {
         const div = document.createElement('div');
         div.classList.add('proyecto');
@@ -95,19 +108,39 @@
         img.src = p.imagen;
         img.alt = `Vista previa de ${p.nombre}`;
 
-        const boton = document.createElement('button');
-        boton.textContent = 'Abrir';
-        boton.onclick = () => {
+        const botones = document.createElement('div');
+        botones.classList.add('botones');
+
+        const botonAbrir = document.createElement('button');
+        botonAbrir.textContent = 'Abrir';
+        botonAbrir.className = 'abrir';
+        botonAbrir.onclick = () => {
           localStorage.setItem('proyectoActual', index);
           window.location.href = '../Dibujos/dibujos.html';
         };
 
+        const botonEliminar = document.createElement('button');
+        botonEliminar.textContent = 'Eliminar';
+        botonEliminar.className = 'eliminar';
+        botonEliminar.onclick = () => {
+          if (confirm(`¿Eliminar "${p.nombre}"?`)) {
+            proyectos.splice(index, 1);
+            localStorage.setItem('proyectos', JSON.stringify(proyectos));
+            actualizarVista();
+          }
+        };
+
+        botones.appendChild(botonAbrir);
+        botones.appendChild(botonEliminar);
+
         div.appendChild(nombre);
         div.appendChild(img);
-        div.appendChild(boton);
+        div.appendChild(botones);
         contenedor.appendChild(div);
       });
     }
+
+    actualizarVista();
   </script>
 </body>
 </html>
