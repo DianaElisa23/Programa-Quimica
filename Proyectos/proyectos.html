@@ -3,25 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <title>Proyectos Guardados</title>
+  <link rel="stylesheet" href="../estilos.css">
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #contenedor-proyectos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 30px 20px 60px;
+    }
+
     .proyecto {
-      margin: 10px;
+      margin: 15px;
       padding: 10px;
       border: 1px solid #ccc;
       display: inline-block;
       text-align: center;
       background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
+
     .proyecto img {
       width: 150px;
       height: auto;
       display: block;
-      margin-bottom: 5px;
+      margin: 10px auto;
+    }
+
+    .proyecto button {
+      margin-top: 5px;
+      padding: 5px 10px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .flecha-retroceso {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 20px;
+      height: 20px;
+      border-left: 5px solid #333;
+      border-bottom: 5px solid #333;
+      transform: rotate(45deg);
+      cursor: pointer;
+      z-index: 999;
+      transition: transform 0.2s ease;
+    }
+
+    .flecha-retroceso:hover {
+      transform: rotate(45deg) scale(1.2);
     }
   </style>
 </head>
 <body>
+  <div class="flecha-retroceso" onclick="window.location.href='../proyecto.html'"></div>
+
   <h1>Proyectos Guardados</h1>
+
   <div id="contenedor-proyectos"></div>
 
   <script>
@@ -33,27 +86,27 @@
     } else {
       proyectos.forEach((p, index) => {
         const div = document.createElement('div');
-        div.className = 'proyecto';
-        div.innerHTML = `
-          <img src="${p.imagen}" alt="${p.nombre}">
-          <strong>${p.nombre}</strong><br>
-          <button onclick="abrirProyecto(${index})">Abrir</button>
-          <button onclick="eliminarProyecto(${index})">Eliminar</button>
-        `;
+        div.classList.add('proyecto');
+
+        const nombre = document.createElement('h3');
+        nombre.textContent = p.nombre;
+
+        const img = document.createElement('img');
+        img.src = p.imagen;
+        img.alt = `Vista previa de ${p.nombre}`;
+
+        const boton = document.createElement('button');
+        boton.textContent = 'Abrir';
+        boton.onclick = () => {
+          localStorage.setItem('proyectoActual', index);
+          window.location.href = '../Dibujos/dibujos.html';
+        };
+
+        div.appendChild(nombre);
+        div.appendChild(img);
+        div.appendChild(boton);
         contenedor.appendChild(div);
       });
-    }
-
-    function abrirProyecto(index) {
-      localStorage.setItem('proyectoActual', index);
-      window.location.href = 'editor.html'; // redirige al editor
-    }
-
-    function eliminarProyecto(index) {
-      const proyectos = JSON.parse(localStorage.getItem('proyectos') || '[]');
-      proyectos.splice(index, 1);
-      localStorage.setItem('proyectos', JSON.stringify(proyectos));
-      location.reload();
     }
   </script>
 </body>
