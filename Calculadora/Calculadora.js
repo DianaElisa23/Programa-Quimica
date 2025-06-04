@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const pesosAtomicos = {
-    /* ... tu objeto completo de pesos atómicos aquí ... */
+    
     "H": 1.008, "He": 4.0026, "Li": 6.941, "Be": 9.0122, "B": 10.81,
     "C": 12.011, "N": 14.007, "O": 15.999, "F": 18.998, "Ne": 20.180,
     "Na": 22.990, "Mg": 24.305, "Al": 26.982, "Si": 28.085, "P": 30.974,
