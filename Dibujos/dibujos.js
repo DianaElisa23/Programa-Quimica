@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', () => {
 }
 
   
-  // 🔁 Cargar proyecto si fue seleccionado
+  // Cargar proyecto si fue seleccionado
   const proyectosGuardados = JSON.parse(localStorage.getItem('proyectos') || '[]');
   const indexSeleccionado = localStorage.getItem('proyectoActual');
   if (indexSeleccionado !== null && proyectosGuardados[indexSeleccionado]) {
