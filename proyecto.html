@@ -25,6 +25,15 @@
     window.location.href = 'index.html'; // Regresa siempre a inicio
   }
   </script>
+
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedMode = localStorage.getItem('modoOscuro') === 'true';
+    if (savedMode) {
+      document.body.classList.add('dark-mode');
+    }
+  });
+</script>
 </body>
 </html>
 

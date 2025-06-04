@@ -175,6 +175,13 @@
   </div>
 
   <script src="Calculadora.js" defer></script>
-
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedMode = localStorage.getItem('modoOscuro') === 'true';
+    if (savedMode) {
+      document.body.classList.add('dark-mode');
+    }
+  });
+</script>
 </body>
 </html>

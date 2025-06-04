@@ -1,7 +1,8 @@
 /* Modo oscuro base */
+/* --- Modo claro por defecto --- */
 body {
-  background-color: #121212;
-  color: #eee;
+  background-color: #fdfdfd;
+  color: #222;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 20px 0 40px 0;
@@ -9,35 +10,63 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Encabezado modo claro */
 h1 {
   text-align: center;
   margin-bottom: 15px;
+  color: #111;
+}
+
+/* --- Modo oscuro --- */
+body.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+
+/* Encabezado modo oscuro */
+body.dark-mode h1 {
   color: #fff;
 }
 
 /* Pantallas formula/info */
+/* --- Modo claro por defecto --- */
 .pantalla-principal,
 .pantalla-secundaria,
 .pantalla-info {
-  background-color: #1f1f1f;
+  background-color: #f5f5f5;
   max-width: 1000px;
   margin: 0 auto 1rem;
   padding: 1rem 1.5rem;
   border-radius: 8px;
   font-size: 1.3rem;
   text-align: center;
-  box-shadow: 0 0 6px #00000099;
-  color: #ddd;
+  box-shadow: 0 0 6px #ccc;
+  color: #222;
   min-height: 3rem;
   user-select: text;
 }
 
+/* --- Modo oscuro --- */
+body.dark-mode .pantalla-principal,
+body.dark-mode .pantalla-secundaria,
+body.dark-mode .pantalla-info {
+  background-color: #1f1f1f;
+  box-shadow: 0 0 6px #00000099;
+  color: #ddd;
+}
+
 /* Fijar altura para evitar cambios bruscos */
+/* --- Modo claro por defecto --- */
 .pantalla-info {
-  min-height: 4rem;  /* Altura fija para que no cambie */
+  min-height: 4rem;
   overflow-wrap: break-word;
   font-size: 1rem;
-  color: #ccc;
+  color: #333; /* texto oscuro en fondo claro */
+}
+
+/* --- Modo oscuro --- */
+body.dark-mode .pantalla-info {
+  color: #ccc; /* texto claro en fondo oscuro */
 }
 
 /* Contenedor tabla */
@@ -52,13 +81,13 @@ h1 {
   position: relative;
 }
 
-/* Botones tabla periódica */
+/* --- Modo claro por defecto --- */
 .elemento {
-  background-color: #2a2a2a;
+  background-color: #e0e0e0;
   border-radius: 8px;
-  border: 1px solid #444;
-  box-shadow: inset 0 1px 2px #0008;
-  color: #fff;
+  border: 1px solid #bbb;
+  box-shadow: inset 0 1px 2px #aaa;
+  color: #222;
   font-weight: 600;
   font-size: 1.15rem;
   display: flex;
@@ -68,52 +97,107 @@ h1 {
   transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-/* Hover efecto */
+/* Hover efecto (modo claro) */
 .elemento:hover {
+  filter: brightness(1.1);
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+/* --- Modo oscuro --- */
+body.dark-mode .elemento {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  box-shadow: inset 0 1px 2px #0008;
+  color: #fff;
+}
+
+/* Hover efecto (modo oscuro) */
+body.dark-mode .elemento:hover {
   filter: brightness(1.2);
   transform: scale(1.1);
   z-index: 10;
 }
 
-/* Botones especiales */
+/* --- Modo claro por defecto --- */
 .elemento.delete {
+  background-color: #f48b8b !important;
+  color: #222 !important;
+}
+
+.elemento.delete:hover {
+  background-color: #ff5c5c !important;
+}
+
+.elemento.limpiar {
+  background-color: #a3c1ff !important;
+  color: #222 !important;
+}
+
+.elemento.limpiar:hover {
+  background-color: #5f9eff !important;
+}
+
+.elemento.numero {
+  background-color: #d0d8e8 !important;
+  color: #222 !important;
+}
+
+.elemento.numero:hover {
+  background-color: #b0bfd9 !important;
+}
+
+/* --- Modo oscuro con body.dark-mode --- */
+body.dark-mode .elemento.delete {
   background-color: #b63030 !important;
   color: white !important;
 }
 
-.elemento.delete:hover {
+body.dark-mode .elemento.delete:hover {
   background-color: #e34e4e !important;
 }
 
-.elemento.limpiar {
+body.dark-mode .elemento.limpiar {
   background-color: #2d6dcc !important;
   color: white !important;
 }
 
-.elemento.limpiar:hover {
+body.dark-mode .elemento.limpiar:hover {
   background-color: #4a88ff !important;
 }
 
-.elemento.numero {
+body.dark-mode .elemento.numero {
   background-color: #3b4a63 !important;
   color: white !important;
 }
 
-.elemento.numero:hover {
+body.dark-mode .elemento.numero:hover {
   background-color: #596b8a !important;
 }
 
-/* Colores por grupos (modo oscuro) */
-.alcalino { background-color: #d94e4e; color: #fff; }          /* Rojo fuerte */
-.alcalinoterreo { background-color: #d9c691; color: #222; }    /* Beige */
-.transicion { background-color: #d9b932; color: #222; }        /* Amarillo oscuro */
-.metaloide { background-color: #998c56; color: #fff; }         /* Marrón claro */
-.no_metal { background-color: #569a89; color: #fff; }          /* Verde azulado */
-.gas_noble { background-color: #619fd1; color: #fff; }         /* Azul */
-.halogeno { background-color: #d984a6; color: #222; }          /* Rosado */
-.lantanido { background-color: #ff8a47; color: #222; }         /* Naranja */
-.actinido { background-color: #ff6530; color: #222; }          /* Naranja oscuro */
-.metal_p { background-color: #2e7e7a; color: #fff; }           /* Verde oscuro */
+/* Base - Modo claro por defecto */
+.alcalino { background-color: #ffb3b3; color: #222; }
+.alcalinoterreo { background-color: #fff0d5; color: #222; }
+.transicion { background-color: #fff2b3; color: #222; }
+.metaloide { background-color: #e6d9b3; color: #222; }
+.no_metal { background-color: #b3e6d9; color: #222; }
+.gas_noble { background-color: #b3d9ff; color: #222; }
+.halogeno { background-color: #ffb3d9; color: #222; }
+.lantanido { background-color: #ffcc99; color: #222; }
+.actinido { background-color: #ffb3a6; color: #222; }
+.metal_p { background-color: #b3e6e6; color: #222; }
+
+/* Modo oscuro activado */
+body.dark-mode .alcalino { background-color: #d94e4e; color: #fff; }
+body.dark-mode .alcalinoterreo { background-color: #d9c691; color: #222; }
+body.dark-mode .transicion { background-color: #d9b932; color: #222; }
+body.dark-mode .metaloide { background-color: #998c56; color: #fff; }
+body.dark-mode .no_metal { background-color: #569a89; color: #fff; }
+body.dark-mode .gas_noble { background-color: #619fd1; color: #fff; }
+body.dark-mode .halogeno { background-color: #d984a6; color: #222; }
+body.dark-mode .lantanido { background-color: #ff8a47; color: #222; }
+body.dark-mode .actinido { background-color: #ff6530; color: #222; }
+body.dark-mode .metal_p { background-color: #2e7e7a; color: #fff; }
 
 /* Posicionamiento en la cuadrícula para tabla periódica */
 
@@ -252,7 +336,7 @@ h1 {
 .elemento[data-simbolo="No"] { grid-column: 17; grid-row: 11; }
 .elemento[data-simbolo="Lr"] { grid-column: 18; grid-row: 11; }
 
-/* Números y botones especiales */
+/* --- Estilo general para modo claro --- */
 .elemento.numero,
 .elemento.limpiar,
 .elemento.delete,
@@ -260,23 +344,45 @@ h1 {
 .elemento[data-valor=")"] {
   grid-column: auto !important;
   grid-row: auto !important;
-  background-color: #2f3b52 !important;
-  color: white !important;
+  background-color: #e0e0e0 !important;
+  color: #222 !important;
   font-weight: 700;
   border-radius: 8px;
   box-shadow: none;
   transition: background-color 0.2s ease;
 }
 
+/* --- Estilo para modo oscuro --- */
+body.dark-mode .elemento.numero,
+body.dark-mode .elemento.limpiar,
+body.dark-mode .elemento.delete,
+body.dark-mode .elemento[data-valor="("],
+body.dark-mode .elemento[data-valor=")"] {
+  background-color: #2f3b52 !important;
+  color: white !important;
+}
+
+/* --- Hover en modo claro --- */
 .elemento.numero:hover,
 .elemento.limpiar:hover,
 .elemento.delete:hover,
 .elemento[data-valor="("]:hover,
 .elemento[data-valor=")"]:hover {
-  background-color: #466289 !important;
+  background-color: #c0c0c0 !important; /* gris más oscuro que el fondo claro */
   transform: scale(1.1);
 }
 
+/* --- Hover en modo oscuro --- */
+body.dark-mode .elemento.numero:hover,
+body.dark-mode .elemento.limpiar:hover,
+body.dark-mode .elemento.delete:hover,
+body.dark-mode .elemento[data-valor="("]:hover,
+body.dark-mode .elemento[data-valor=")"]:hover {
+  background-color: #466289 !important; /* azul fuerte solo en dark */
+  transform: scale(1.1);
+}
+
+/* --- Estilo base (modo claro por defecto) --- */
 .flecha-retroceso {
   position: absolute;
   top: 20px;
@@ -291,6 +397,18 @@ h1 {
   transition: transform 0.2s ease;
 }
 
+/* --- Hover en modo claro --- */
 .flecha-retroceso:hover {
+  transform: rotate(45deg) scale(1.2);
+}
+
+/* --- Flecha en modo oscuro --- */
+body.dark-mode .flecha-retroceso {
+  border-left: 5px solid #ccc;
+  border-bottom: 5px solid #ccc;
+}
+
+/* --- Hover en modo oscuro --- */
+body.dark-mode .flecha-retroceso:hover {
   transform: rotate(45deg) scale(1.2);
 }

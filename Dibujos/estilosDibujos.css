@@ -1,13 +1,28 @@
 /* estilosDibujos.css */
+/* -------------------- ESTRUCTURA BASE -------------------- */
 html, body {
-  margin: 0; padding: 0; height: 100%; overflow: hidden;
-  font-family: sans-'Arial Rounded MT Bold', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+  background-color: #fdfdfd; /* modo claro por defecto */
+  color: #222;
 }
+
+/* --- Modo oscuro general --- */
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+/* -------------------- CONTENEDOR DE DIBUJO -------------------- */
 #drawing-container {
   width: 100%;
   height: 100%;
 }
 
+/* -------------------- TOOLBAR -------------------- */
 .toolbar {
   position: absolute;
   top: 50%;
@@ -24,6 +39,13 @@ html, body {
   min-width: 160px;
 }
 
+/* Modo oscuro toolbar */
+body.dark-mode .toolbar {
+  background: #1e1e1e;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+}
+
+/* Botones de la toolbar */
 .toolbar button {
   background-color: #5c85a3;
   color: #000;
@@ -42,14 +64,22 @@ html, body {
   gap: 6px;
 }
 
+body.dark-mode .toolbar button {
+  background-color: #2f3b52;
+  color: white;
+}
+
+/* Hover toolbar button */
 .toolbar button:hover {
   background-color: #6d94b2;
   transform: scale(1.03);
 }
 
+body.dark-mode .toolbar button:hover {
+  background-color: #466289;
+}
 
-
-
+/* -------------------- FLECHA -------------------- */
 .flecha-retroceso {
   position: absolute;
   top: 20px;
@@ -68,6 +98,12 @@ html, body {
   transform: rotate(45deg) scale(1.2);
 }
 
+body.dark-mode .flecha-retroceso {
+  border-left: 5px solid #ccc;
+  border-bottom: 5px solid #ccc;
+}
+
+/* -------------------- MODAL -------------------- */
 .modal {
   position: fixed;
   top: 0;
@@ -91,6 +127,13 @@ html, body {
   min-width: 320px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   font-family: Arial, sans-serif;
+  color: #222;
+}
+
+body.dark-mode .modal-content {
+  background: #1e1e1e;
+  color: #f0f0f0;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
 .modal-content label {
@@ -103,12 +146,25 @@ html, body {
   border-radius: 8px;
   font-size: 16px;
   outline: none;
+  color: #222;
+  background-color: #fff;
 }
 
 .modal-content input:focus {
-  border-color: #ffffff;
+  border-color: #5c85a3;
 }
 
+body.dark-mode .modal-content input {
+  border: 2px solid #555;
+  background-color: #2b2b2b;
+  color: #f0f0f0;
+}
+
+body.dark-mode .modal-content input:focus {
+  border-color: #81a9c5;
+}
+
+/* -------------------- MODAL BOTONES -------------------- */
 .modal-buttons {
   display: flex;
   justify-content: flex-end;
@@ -125,22 +181,13 @@ html, body {
   transition: background 0.3s ease;
 }
 
-#confirmar-guardar {
-  background-color: #28a745;
-  color: white;
-}
-
-#confirmar-guardar:hover {
-  background-color: #218838;
-}
-
+#confirmar-guardar,
 #cancelar-guardar {
   background-color: #28a745;
   color: white;
 }
 
+#confirmar-guardar:hover,
 #cancelar-guardar:hover {
   background-color: #218838;
 }
-
-

@@ -46,6 +46,14 @@
 
   <script src="dibujos.js"></script>
 
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedMode = localStorage.getItem('modoOscuro') === 'true';
+    if (savedMode) {
+      document.body.classList.add('dark-mode');
+    }
+  });
+</script>
 </body>
 </html>
 

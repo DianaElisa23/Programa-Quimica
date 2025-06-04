@@ -97,6 +97,7 @@ body.dark-mode .fondo-icono {
   z-index: 2;
 }
 
+/* --- Modo claro por defecto --- */
 .flecha-retroceso {
   position: absolute;
   top: 20px;
@@ -111,6 +112,18 @@ body.dark-mode .fondo-icono {
   transition: transform 0.2s ease;
 }
 
+/* Hover (modo claro) */
 .flecha-retroceso:hover {
+  transform: rotate(45deg) scale(1.2);
+}
+
+/* --- Modo oscuro --- */
+body.dark-mode .flecha-retroceso {
+  border-left: 5px solid #ccc;
+  border-bottom: 5px solid #ccc;
+}
+
+/* Hover (modo oscuro usa mismo efecto visual) */
+body.dark-mode .flecha-retroceso:hover {
   transform: rotate(45deg) scale(1.2);
 }
