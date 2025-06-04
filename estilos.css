@@ -112,7 +112,7 @@ body.dark-mode .fondo-icono {
   transition: transform 0.2s ease;
 }
 
-/* Hover (modo claro) */
+/* Modo claro */
 .flecha-retroceso:hover {
   transform: rotate(45deg) scale(1.2);
 }
